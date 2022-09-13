@@ -1,0 +1,108 @@
+-- creation of database
+-- create database database_name----> syntax
+create database jun25
+
+-- creating a table 
+-- create table table_name ( column1 datatype1, ....... column_n datatype_n)----> syntax
+--1.Create a customer table which comprises of these columns – 
+--‘customer_id’, ‘first_name’, ‘last_name’, ‘email’, ‘address’, ‘city’,’state’,’zip’
+create table customer ( customer_id int,
+first_name varchar(50),
+last_name varchar(50),
+email varchar(50),
+addres varchar(50),
+city varchar(20),
+statee varchar(20),
+zip varchar(20))
+
+-- view the table
+-- select columns from table_name
+-- * ---> all columns
+select *  from customer
+
+--2.Insert 5 new records into the table
+-- insert into table_name values( data)---> syntax
+insert into customer values(
+10,'jemmi','swq','jem@gmail.com','2nd floor','leh','mysore','33222')
+
+INSERT INTO CUSTOMER VALUES
+	 
+	  (20,'JEMMI','AVANTHIKA','JEMMI@GMAIL.COM','2ND FLOOR','LEH','KASHMIR','22222'),
+
+      (30,'JESSICA','VANYA','VANYA@GMAIL.COM','3RD FLOOR','ALLEPPY','KERALA','33333'),
+
+	  (40,'JERUSHA','JERU','JERU@GMAIL.COM','4TH FLOOR','OOTY','BANGLORE','44444'),
+
+	  (50,'GRACE','ZIPPORA','GRACE@GMAIL.COM','5TH FLOOR','SAN JOSE','LA','55555')
+
+SELECT * FROM CUSTOMER
+-----------------------------------------------------------------------------------------------
+--3.Select only the ‘first_name’ & ‘last_name’ columns from the customer table
+-- select column_name from table_name
+-- table-->customer
+-- column--> first_name, last_name
+select first_name, last_name from customer
+--------------------------------------------------------------------------------------------------
+
+
+--4.Select those records where ‘first_name’ starts with “G” and city is ‘San Jose’
+-- select columns from table where condition
+-- table--> customer
+-- columns --> *
+-- condition--> first_name like 'g%' and city='san jose'
+select * from customer where first_name like 'g%' and city ='san jose'
+---------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------1.Create an ‘Orders’ table which comprises of these columns – ‘order_id’, ‘order_date’, ‘amount’, ‘customer_id’CREATE TABLE ORDERS(ORDER_ID INT,ORDER_DATE INT,AMOUNT INT, CUSTOMER_ID INT);
+
+INSERT INTO ORDERS VALUES(100,2020-10-01,9000,20),
+						(110,2020-10-01,9000,1),
+						(111,2020-10-02,8000,2),
+						(112,2020-10-03,7000,3),
+						(113,2020-10-04,6000,4),
+						(114,2020-10-05,5000,5);select * from orders-------------------------------------------------------------------------------------------------------2.Make an inner join on ‘Customer’ & ‘Order’ tables on the ‘customer_id’ column -- select columns from table1-- inner join table2-- on condition ------> syntax-- table1--> customer-- table2--> orders-- condition --> o.cid=c.cid-- column---> *select * from customerinner join orderson customer.customer_id=ORDERS.CUSTOMER_ID-------------------------------------------------------------------------------------------------3.Make left and right joins on ‘Customer’ & ‘Order’ tables on the ‘customer_id’ column-- select columns from table1-- left join table2-- on condition ------> syntax-- select columns from table1(lefft)-- right join table2(right)-- on condition ------> syntaxselect * from customerright join orderson customer.customer_id=ORDERS.CUSTOMER_IDselect * from customerleft join orderson customer.customer_id=ORDERS.CUSTOMER_IDselect * from customerselect * from orders-------------------------------------------------------------------------------------------4.Update the ‘Orders’ table, set the amount to be 100 where ‘customer_id’ is 3-- update table_name -- set data-- where condition-- table--> orders-- data --> amount=100-- customer_id=3update ordersset amount=100where customer_id=3--------------------------------------------------------------------------------------1.Use the inbuilt functions and find the minimum, maximum and average amount from the orders table-- select columns from table-- table--> orders-- columns--> amount---> min(amount),max(amount),avg(amount) select min(amount) as minimum_column,max(amount) as max_column,avg(amount) as avg_og_column from orders-----------------------------------------------------------------------------------------------------------------2.Create a user-defined function, which will multiply the given number with 10-- create function function_name(@parameters datatype)-- returns datatype as-- begin-- operation-- end----------------> syntax for creationcreate function multiply(@num int)returns int asbegin	set @num=@num*10	return @numend-- call my function-- select dbo.function_name(parameters) from tableselect amount,dbo.multiply(amount) from orders--------------------------------------------------------------------------------------3.Use the case statement to check if 100 is less than 200, --greater than 200 or equal to 2oo and --print the corresponding value--select value1-- case-- when condition1 then 'condition is ......'-- when condition_n then ',.................'-- else'.......'-- end--c1--> 100<200 --> '100 is less'--c2--> 100=200 -->'equal'-- ' 100 is greater'-- value1---> 100select 100 as val,casewhen 100<200 then '100 is less'when 100=200 then 'equal'else '100 is greater'endas result---------------------------------------------------------------------1.Arrange the ‘Orders’ dataset in decreasing order of amount-- select columns from table order by column-- table--> orders--columns--> *-- order by amount descselect * from orders order by amount ---------------------------------------------------------------------2.Create a table with name ‘Employee_details1’ and comprising of these columns –--‘Emp_id’, ‘Emp_name’, ‘Emp_salary’.--Create another table with name ‘Employee_details2’, --which comprises of same columns as first table.CREATE TABLE EMPLOYEE_DETAILS1 (EMP_ID INT, EMP_NAME VARCHAR(50),EMP_SALARY INT);
+
+INSERT INTO EMPLOYEE_DETAILS1 VALUES(1,'FERNA',5000),
+								(2,'APPLE',6000),
+								(3,'DANNY',7000),
+								(4,'JOHN',8000);
+
+SELECT * FROM EMPLOYEE_DETAILS1;
+SELECT * FROM EMPLOYEE_DETAILS2;
+
+
+CREATE TABLE EMPLOYEE_DETAILS2 (EMP_ID INT, EMP_NAME VARCHAR(50),EMP_SALARY INT);
+
+INSERT INTO EMPLOYEE_DETAILS2 VALUES(5,'AKASH',50000),
+								(6,'VISHWA',60000),
+								(7,'CHANDAN',70000),
+								(8,'VIKAS',80000);
+--------------------------------------------------------------------------------------
+
+
+--3.Apply the union operator on these two tables
+--select * from table1
+--union
+--select * from table2
+select * from EMPLOYEE_DETAILS1
+union
+select * from EMPLOYEE_DETAILS2
+--------------------------------------------------------------------------------------
+
+
+--4.Apply the intersect operator on these two tables
+--intersect
+
+select * from EMPLOYEE_DETAILS1
+intersect
+select * from EMPLOYEE_DETAILS2
+--------------------------------------------------------------------------------------
+
+--5.Apply the except operator on these two tables
+--except
+select * from EMPLOYEE_DETAILS1
+except
+select * from EMPLOYEE_DETAILS2
+
+select * from EMPLOYEE_DETAILS2
+except
+select * from EMPLOYEE_DETAILS1

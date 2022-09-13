@@ -1,0 +1,12 @@
+1. Import libraries like- Matplotlib, pandas, NumPy
+2. import the dataset
+3. display the top 10 records of the dataset
+4. Calculate Histogram for time spent on day calls by customers. Then find out in which day minutes a maximum number of customers lie on
+5. How do we categorise the churner and the non-churner for the time spent on day calls(total day minutes)?
+6. Find the number of customers who did opt for a voice mail plan
+7. Create a boxplot for a categorical variable(international plan) and continuous variable(area code)
+8. Create a crosstab for the area code to find the churner or non-achurner
+9. How to pivot information using python for categorical values? Plot one
+10. Now calculate the total international minutes for all the combinations above
+11. Find Standard deviation of total night calls
+12. Plot a distplot for the above result to look at specifically total night calls
